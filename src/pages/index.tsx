@@ -1,9 +1,10 @@
-import Head from 'next/head'
-import { Roboto_Serif } from 'next/font/google'
+import Head from 'next/head';
+import { Roboto_Serif } from 'next/font/google';
+import { inventory, item } from '@/types';
+import inv from '@/inventory';
+import styles from '@/styles/Home.module.css';
 
-import styles from '@/styles/Home.module.css'
-
-import DisplayTile from '@/components/DisplayTile.tsx'
+import DisplayTile from '@/components/DisplayTile';
 
 const roboto = Roboto_Serif({ subsets: [] })
 
@@ -22,8 +23,14 @@ export default function Home() {
         <div>
           Filter bar
         </div>
-        <DisplayTile />
         <div className={styles.grid}>
+          { inv.inventory.map( item => {
+            return (
+              <DisplayTile piece={item} key={item.id} />
+            )
+          })}
+        </div>
+        <div className="footer">
           Footer
         </div>
       </main>
